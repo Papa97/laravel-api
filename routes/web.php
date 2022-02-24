@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Area Pubblica - FrontOffice
-Route::get('/', function () {
-    return view('front');
-});
 
 Auth::routes();
 
@@ -28,3 +24,7 @@ Route::prefix("admin")->namespace("Admin")->middleware("auth")->group(function()
     Route::resource("tags", "TagController");
 });
 
+// Area Pubblica - FrontOffice
+Route::get('{any?}', function () {
+    return view('front');
+})->where('any','.*');
